@@ -1,9 +1,8 @@
 
 # Configure the AWS Provider
 provider "aws" {
-  region = var.aws_region
-
-  profile = "zetancc"
+  region  = var.aws_region
+  profile = "mysite"
 }
 
 terraform {
