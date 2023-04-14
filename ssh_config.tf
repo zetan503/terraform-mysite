@@ -25,8 +25,8 @@ resource "local_file" "ssh_config" {
 }
 
 resource "local_file" "ssh_key" {
-  content          = data.template_file.ssh_key.rendered
-  filename         = pathexpand("~/.ssh/aws_private_key.rsa")
-  file_permissions = "0600"
+  content         = data.template_file.ssh_key.rendered
+  filename        = pathexpand("~/.ssh/aws_private_key.rsa")
+  file_permission = "0600"
 }
 
