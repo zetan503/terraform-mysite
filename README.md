@@ -75,3 +75,37 @@ terraform plan
 ```
 terraformm apply
 ```
+
+# Get SSH Key
+
+Get the private key from the terraform state
+
+```
+terraform output ssh_private_key_pem > ~/.ssh/aws_private_key.rsa
+chmod 0600 ~/.ssh/aws_private_key.rsa
+```
+
+# Use generated SSH config
+
+```
+cat ~/.ssh/aws_config 
+Host jumphost
+  Hostname 44.234.233.76
+  User ubuntu
+  IdentityFile ~/.ssh/aws_private_key.rsa
+    
+Host dvr
+  Hostname 10.0.1.192
+  User ubuntu
+  IdentityFile ~/.ssh/aws_private_key.rsa
+  ProxyJump jumphost
+
+
+```
+
+SSH to dvr will proxy the connection through the jump host using the generated key.
+
+```
+ssh dvr
+```
+

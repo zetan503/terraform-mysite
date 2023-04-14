@@ -52,3 +52,10 @@ EOF
 output "jumphost_ip" {
   value = aws_eip.jumphost.public_ip
 }
+
+# attach the security group to the instance primary interface
+resource "aws_network_interface_sg_attachment" "security_group_attach" {
+  security_group_id    = aws_security_group.security_group.id
+  network_interface_id = aws_instance.jumphost.primary_network_interface_id
+}
+
