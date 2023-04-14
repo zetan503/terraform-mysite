@@ -15,5 +15,5 @@ data "template_file" "ssh_config" {
 
 resource "local_file" "ssh_config" {
   content  = data.template_file.ssh_config.rendered
-  filename = "~/.ssh/aws_config"
+  filename = pathexpand("~/.ssh/aws_config")
 }
